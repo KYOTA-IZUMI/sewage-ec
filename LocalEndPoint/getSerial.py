@@ -48,7 +48,10 @@ def send_to_ambient(voltage, w_strength):
     load_dotenv()
     am = ambient.Ambient(os.getenv("AMBIENT_CHANNEL_ID"), os.getenv("AMBIENT_WRITE_KEY"))
     r = am.send({'d1': voltage, 'd2': w_strength})
-    print("Data was sent successfully." if r.status_code == 200 else f"Failed to send data. Status code: {r.status_code}")
+    if r.status_code == 200:
+        print("Data was sent successfully.")
+    else:
+        print(f"Failed to send data. Status code: {r.status_code}")
 
 def process_line(line):
     """受信したデータを解析し、電波強度と電気伝導度を抽出"""
