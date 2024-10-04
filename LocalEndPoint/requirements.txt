@@ -1,0 +1,4 @@
+pyserial
+dotenv
+python-dotenv
+ambient
